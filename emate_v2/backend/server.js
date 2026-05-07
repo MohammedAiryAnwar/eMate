@@ -13,7 +13,7 @@ const app = express();
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://emate-frontend-ktuu.onrender.com',
   credentials: true,
 }));
 app.use(express.json());
