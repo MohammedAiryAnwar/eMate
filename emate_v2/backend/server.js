@@ -13,11 +13,17 @@ const app = express();
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
 app.use(cors({
-  origin: 'https://emate-frontend-ktuu.onrender.com',
+  origin: [
+    'https://emate-frontend-ktuu.onrender.com',
+    'http://localhost:3000', // for local dev
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
+// Handle preflight requests for all routes
+app.options('*', cors());
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
 app.use('/api/auth',     require('./routes/authRoutes'));
